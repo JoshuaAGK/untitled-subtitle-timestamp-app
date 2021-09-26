@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="sub.js"></script>
+        <style>
+            li {
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <input id="inputbox" type="text" placeholder="text search"/>
+
+        <ul id="sublist">
+
+        </ul>
+
+        <script>
+
+            document.getElementById("inputbox").addEventListener('input', changeEvent)
+
+            function changeEvent() {
+                document.getElementById("sublist").innerHTML = null;
+
+                var searchtext = document.getElementById("inputbox").value.toLowerCase();
+
+                if (searchtext != "") {
+                    for (var i = 0; i < endgame.length; i++) {
+                        var subtext = endgame[i].text;
+
+                        if (subtext.toLowerCase().includes(searchtext)) {
+                            var sub = document.createElement("li");
+                            sub.innerHTML = subtext + "<br/>" + "(IV Avengers " + endgame[i].time + ")";
+                            document.getElementById("sublist").appendChild(sub);
+
+                        }
+                    }
+                }
+            }
+
+        </script>
+    </body>
+</html>
