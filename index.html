@@ -2,6 +2,7 @@
 <html>
     <head>
         <script src="sub.js"></script>
+        <script src="doctorstrange.js"></script>
         <style>
             * {
                 margin: 0;
@@ -39,6 +40,9 @@
 
         <script>
 
+            var entries = [doctorstrange, endgame];
+            var entiresNames = ["Doctor Strange", "IV Avengers"]
+
             document.getElementById("inputbox").addEventListener('input', changeEvent)
 
             function changeEvent() {
@@ -47,30 +51,34 @@
                 var searchtext = document.getElementById("inputbox").value.toLowerCase();
 
                 if (searchtext != "") {
-                    for (var i = 0; i < endgame.length; i++) {
-                        var subtext = endgame[i].text;
+                    for (var j = 0; j < entries.length; j++) {
+                        for (var i = 0; i < entries[j].length; i++) {
+                            var subtext = entries[j][i].text;
 
-                        if (subtext.toLowerCase().includes(searchtext)) {
-                            var sub = document.createElement("li");
-                            var substringStartIndex = subtext.toLowerCase().indexOf(searchtext);
-                            var substringEndIndex = searchtext.length + substringStartIndex;
-
-                            var beginningText = subtext.slice(0, substringStartIndex);
-                            var markText = "<mark>" + subtext.slice(substringStartIndex, substringEndIndex) + "</mark>";
-                            var endingText = subtext.slice(substringEndIndex);
-
-
-                            var timestring = endgame[i].time.split(",")[0];
-                            var timeArray = timestring.split(":");
-                            var hours = parseInt(timeArray[0]);
-                            var minutes = parseInt(timeArray[1]);
-                            var seconds = parseInt(timeArray[2]);
-
-                            minutes = (hours * 60) + minutes;
                             
-                            sub.innerHTML = beginningText + markText + endingText + "<br/>" + "<i>(IV Avengers " + minutes + ":" + seconds + ")</i>";
-                            document.getElementById("sublist").appendChild(sub);
 
+                            if (subtext.toLowerCase().includes(searchtext)) {
+                                var sub = document.createElement("li");
+                                var substringStartIndex = subtext.toLowerCase().indexOf(searchtext);
+                                var substringEndIndex = searchtext.length + substringStartIndex;
+
+                                var beginningText = subtext.slice(0, substringStartIndex);
+                                var markText = "<mark>" + subtext.slice(substringStartIndex, substringEndIndex) + "</mark>";
+                                var endingText = subtext.slice(substringEndIndex);
+
+
+                                var timestring = entries[j][i].time.split(",")[0];
+                                var timeArray = timestring.split(":");
+                                var hours = parseInt(timeArray[0]);
+                                var minutes = parseInt(timeArray[1]);
+                                var seconds = parseInt(timeArray[2]);
+
+                                minutes = (hours * 60) + minutes;
+                                
+                                sub.innerHTML = beginningText + markText + endingText + "<br/>" + "<i>(" + entiresNames[j] + " " + minutes + ":" + seconds + ")</i>";
+                                document.getElementById("sublist").appendChild(sub);
+
+                            }
                         }
                     }
                 }
