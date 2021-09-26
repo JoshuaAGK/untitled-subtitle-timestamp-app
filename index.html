@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        
         <script src="subtitles/movies/ironman1.js"></script>
         <script src="subtitles/movies/hulk1.js"></script>
         <script src="subtitles/movies/ironman2.js"></script>
@@ -55,84 +56,11 @@
         <script src="subtitles/tv/whatif1_6.js"></script>
         <script src="subtitles/tv/whatif1_7.js"></script>
         <script src="scripts/dict.js"></script>
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            }
-            body {
-                display: grid;
-                grid-template-columns: 150px 550px auto;
-                grid-template-rows: 60px auto;
-                padding-top: 10px;
-            }
-            input {
-                grid-area: 1 / 2 / 2 / 3;
-                border-radius: 999px;
-                border: 1px solid black;
-                padding: 20px;
-            }
-            ul {
-                grid-area: 2 / 2 / 3 / 3;
-                list-style-type: none;
-            }
-            li {
-                margin-top: 30px;
-                margin-left: 20px;
-            }
-        </style>
+        <link rel="stylesheet" href="media/main.css">
     </head>
     <body>
         <input id="inputbox" type="text" placeholder="text search"/>
-
-        <ul id="sublist">
-
-        </ul>
-
-        <script>
-
-            document.getElementById("inputbox").addEventListener('input', changeEvent)
-
-            function changeEvent() {
-                document.getElementById("sublist").innerHTML = null;
-
-                var searchtext = document.getElementById("inputbox").value.toLowerCase();
-
-                if (searchtext != "") {
-                    for (var j = 0; j < ENTRIES.length; j++) {
-                        for (var i = 0; i < ENTRIES[j].data.length; i++) {
-                            var subtext = ENTRIES[j].data[i].text;
-
-                            
-
-                            if (subtext.toLowerCase().includes(searchtext) && searchtext.length >= 3) {
-                                var sub = document.createElement("li");
-                                var substringStartIndex = subtext.toLowerCase().indexOf(searchtext);
-                                var substringEndIndex = searchtext.length + substringStartIndex;
-
-                                var beginningText = subtext.slice(0, substringStartIndex);
-                                var markText = "<mark>" + subtext.slice(substringStartIndex, substringEndIndex) + "</mark>";
-                                var endingText = subtext.slice(substringEndIndex);
-
-
-                                var timestring = ENTRIES[j].data[i].time.split(",")[0];
-                                var timeArray = timestring.split(":");
-                                var hours = parseInt(timeArray[0]);
-                                var minutes = parseInt(timeArray[1]);
-                                var seconds = timeArray[2];
-
-                                minutes = (hours * 60) + minutes;
-                                
-                                sub.innerHTML = beginningText + markText + endingText + "<br/>" + "<i>(" + ENTRIES[j].name + " " + minutes + ":" + seconds + ")</i>";
-                                document.getElementById("sublist").appendChild(sub);
-
-                            }
-                        }
-                    }
-                }
-            }
-
-        </script>
+        <ul id="sublist"></ul>
+        <script src="scripts/main.js"></script>
     </body>
 </html>
