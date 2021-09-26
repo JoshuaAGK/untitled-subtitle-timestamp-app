@@ -1,8 +1,60 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="sub.js"></script>
-        <script src="doctorstrange.js"></script>
+        <meta charset="UTF-8">
+        <script src="subtitles/movies/ironman1.js"></script>
+        <script src="subtitles/movies/hulk1.js"></script>
+        <script src="subtitles/movies/ironman2.js"></script>
+        <script src="subtitles/movies/thor1.js"></script>
+        <script src="subtitles/movies/captainamerica1.js"></script>
+        <script src="subtitles/movies/avengers1.js"></script>
+        <script src="subtitles/movies/ironman3.js"></script>
+        <script src="subtitles/movies/thor2.js"></script>
+        <script src="subtitles/movies/captainamerica2.js"></script>
+        <script src="subtitles/movies/guardians1.js"></script>
+        <script src="subtitles/movies/avengers2.js"></script>
+        <script src="subtitles/movies/antman1.js"></script>
+        <script src="subtitles/movies/captainamerica3.js"></script>
+        <script src="subtitles/movies/doctorstrange1.js"></script>
+        <script src="subtitles/movies/guardians2.js"></script>
+        <script src="subtitles/movies/spiderman1.js"></script>
+        <script src="subtitles/movies/thor3.js"></script>
+        <script src="subtitles/movies/blackpanther1.js"></script>
+        <script src="subtitles/movies/avengers3.js"></script>
+        <script src="subtitles/movies/antman2.js"></script>
+        <script src="subtitles/movies/captainmarvel1.js"></script>
+        <script src="subtitles/movies/avengers4.js"></script>
+        <script src="subtitles/movies/spiderman2.js"></script>
+        <script src="subtitles/movies/blackwidow1.js"></script>
+        <script src="subtitles/tv/wandavision1_1.js"></script>
+        <script src="subtitles/tv/wandavision1_2.js"></script>
+        <script src="subtitles/tv/wandavision1_3.js"></script>
+        <script src="subtitles/tv/wandavision1_4.js"></script>
+        <script src="subtitles/tv/wandavision1_5.js"></script>
+        <script src="subtitles/tv/wandavision1_6.js"></script>
+        <script src="subtitles/tv/wandavision1_7.js"></script>
+        <script src="subtitles/tv/wandavision1_8.js"></script>
+        <script src="subtitles/tv/wandavision1_9.js"></script>
+        <script src="subtitles/tv/falconws1_1.js"></script>
+        <script src="subtitles/tv/falconws1_2.js"></script>
+        <script src="subtitles/tv/falconws1_3.js"></script>
+        <script src="subtitles/tv/falconws1_4.js"></script>
+        <script src="subtitles/tv/falconws1_5.js"></script>
+        <script src="subtitles/tv/falconws1_6.js"></script>
+        <script src="subtitles/tv/loki1_1.js"></script>
+        <script src="subtitles/tv/loki1_2.js"></script>
+        <script src="subtitles/tv/loki1_3.js"></script>
+        <script src="subtitles/tv/loki1_4.js"></script>
+        <script src="subtitles/tv/loki1_5.js"></script>
+        <script src="subtitles/tv/loki1_6.js"></script>
+        <script src="subtitles/tv/whatif1_1.js"></script>
+        <script src="subtitles/tv/whatif1_2.js"></script>
+        <script src="subtitles/tv/whatif1_3.js"></script>
+        <script src="subtitles/tv/whatif1_4.js"></script>
+        <script src="subtitles/tv/whatif1_5.js"></script>
+        <script src="subtitles/tv/whatif1_6.js"></script>
+        <script src="subtitles/tv/whatif1_7.js"></script>
+        <script src="scripts/dict.js"></script>
         <style>
             * {
                 margin: 0;
@@ -40,9 +92,6 @@
 
         <script>
 
-            var entries = [doctorstrange, endgame];
-            var entiresNames = ["Doctor Strange", "IV Avengers"]
-
             document.getElementById("inputbox").addEventListener('input', changeEvent)
 
             function changeEvent() {
@@ -51,13 +100,13 @@
                 var searchtext = document.getElementById("inputbox").value.toLowerCase();
 
                 if (searchtext != "") {
-                    for (var j = 0; j < entries.length; j++) {
-                        for (var i = 0; i < entries[j].length; i++) {
-                            var subtext = entries[j][i].text;
+                    for (var j = 0; j < ENTRIES.length; j++) {
+                        for (var i = 0; i < ENTRIES[j].data.length; i++) {
+                            var subtext = ENTRIES[j].data[i].text;
 
                             
 
-                            if (subtext.toLowerCase().includes(searchtext)) {
+                            if (subtext.toLowerCase().includes(searchtext) && searchtext.length >= 3) {
                                 var sub = document.createElement("li");
                                 var substringStartIndex = subtext.toLowerCase().indexOf(searchtext);
                                 var substringEndIndex = searchtext.length + substringStartIndex;
@@ -67,15 +116,15 @@
                                 var endingText = subtext.slice(substringEndIndex);
 
 
-                                var timestring = entries[j][i].time.split(",")[0];
+                                var timestring = ENTRIES[j].data[i].time.split(",")[0];
                                 var timeArray = timestring.split(":");
                                 var hours = parseInt(timeArray[0]);
                                 var minutes = parseInt(timeArray[1]);
-                                var seconds = parseInt(timeArray[2]);
+                                var seconds = timeArray[2];
 
                                 minutes = (hours * 60) + minutes;
                                 
-                                sub.innerHTML = beginningText + markText + endingText + "<br/>" + "<i>(" + entiresNames[j] + " " + minutes + ":" + seconds + ")</i>";
+                                sub.innerHTML = beginningText + markText + endingText + "<br/>" + "<i>(" + ENTRIES[j].name + " " + minutes + ":" + seconds + ")</i>";
                                 document.getElementById("sublist").appendChild(sub);
 
                             }

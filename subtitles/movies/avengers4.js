@@ -1,4 +1,4 @@
-var endgame = [
+const AVENGERS4 = [
     {
       "time": "00:00:05,861",
       "text": "Can you see? - Yeah."

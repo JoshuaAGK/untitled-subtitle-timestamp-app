@@ -1,4 +1,4 @@
-var doctorstrange = [
+const DOCTORSTRANGE1 = [
     {
       "time": "00:02:23,482",
       "text": "Master Kaecilius."
