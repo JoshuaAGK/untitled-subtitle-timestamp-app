@@ -29,12 +29,14 @@ function changeEvent() {
                     }
 
                     var sub = document.createElement("li");
+                    sub.setAttribute("onclick", "copyTextFromElement(this)");
+
                     var substringStartIndex = subtext.toLowerCase().indexOf(searchtext);
                     var substringEndIndex = searchtext.length + substringStartIndex;
 
-                    var beginningText = subtext.slice(0, substringStartIndex);
+                    var beginningText = "<span>" + subtext.slice(0, substringStartIndex) + "</span>";
                     var markText = "<mark>" + subtext.slice(substringStartIndex, substringEndIndex) + "</mark>";
-                    var endingText = subtext.slice(substringEndIndex);
+                    var endingText = "<span>" + subtext.slice(substringEndIndex) + "</span>";
 
 
                     var timestring = ENTRIES[j].data[i].time.split(",")[0];
@@ -61,4 +63,18 @@ function changeEvent() {
     } else {
         document.getElementById("results-num").innerHTML = "";
     }    
+}
+
+function copyTextFromElement(e) {
+    var childNodes = e.childNodes;
+    var quoteText = "> " + childNodes[0].innerText + childNodes[1].innerText + childNodes[2].innerText;
+    var citeText = childNodes[4].innerText;
+    citeText = citeText.substring(1, citeText.length - 1);
+    quoteText += "\n- " + citeText;
+    console.log(quoteText);
+    copyToClipboard(quoteText);
+}
+
+function copyToClipboard (text) {
+    return navigator.clipboard.writeText(text);
 }

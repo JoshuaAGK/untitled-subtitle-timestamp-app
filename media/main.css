@@ -14,13 +14,13 @@ input {
     padding: 20px;
     background-color: #263238;
     position: relative;
-    left: 250px;
-    width: 500px;
     border: none;
     font-size: 16px;
+    left: 0;
+    width: 100%;
+    max-width: 1024px;
 }
 #results-num {
-    left: 250px;
     position: relative;
     padding: 10px;
     padding-left: 20px;
@@ -62,13 +62,12 @@ section[role="grid"] div {
     display: flex;
     flex-direction: column-reverse;
 }
+section[role="grid"] div h2 {
+    margin-bottom: 5px;
+}
 section[role="grid"] ul:empty ~ h2 {
     display: none;
 }
 
 @media only screen and (max-width: 1284px) {
-    input {
-        left: 0;
-        width: 100%;
-    }
 }
